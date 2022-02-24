@@ -14,11 +14,13 @@ public class VaccinationService : IVaccinationService
     private readonly IVaccinationLocationRepository _vaccinationLocationRepository;
     private readonly IVaccinationRegistrationRepository _vaccinationRegistrationRepository;
     private readonly IVaccinationTypeRepository _vaccinationTypeRepository;
-    public VaccinationService(IVaccinationLocationRepository vaccinationLocationRepository, IVaccinationRegistrationRepository vaccinationRegistration, IVaccinationTypeRepository vaccinationType)
+    private readonly IMailService _mailService;
+    public VaccinationService(IVaccinationLocationRepository vaccinationLocationRepository, IVaccinationRegistrationRepository vaccinationRegistration, IVaccinationTypeRepository vaccinationType, IMailService mailService)
     {
         _vaccinationLocationRepository = vaccinationLocationRepository;
         _vaccinationRegistrationRepository = vaccinationRegistration;
         _vaccinationTypeRepository = vaccinationType;
+        _mailService = mailService;
     }
     public List<VaccinationLocation> GetVaccinationLocations()
     {
@@ -32,6 +34,7 @@ public class VaccinationService : IVaccinationService
 
     public void AddVaccinationRegistrations(VaccinationRegistration vaccin)
     {
+        _mailService.Send("");
         _vaccinationRegistrationRepository.AddRegistration(vaccin);
     }
 

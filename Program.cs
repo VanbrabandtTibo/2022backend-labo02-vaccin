@@ -5,7 +5,10 @@ builder.Services.Configure<CsvConfig>(csvSettings);
 builder.Services.AddTransient<IVaccinationLocationRepository, CsvLocationRepository>();
 builder.Services.AddTransient<IVaccinationRegistrationRepository, VaccinationRegistrationRepository>();
 builder.Services.AddTransient<IVaccinationTypeRepository, VaccinationTypeRepository>();
+
 builder.Services.AddTransient<IVaccinationService, VaccinationService>();
+builder.Services.AddTransient<IMailService,OutLookService>();
+
 builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
