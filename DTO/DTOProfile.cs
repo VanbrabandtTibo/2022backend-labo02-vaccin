@@ -11,10 +11,16 @@ public class DTOProfile : Profile
 
 public class VaccinLocationResolver : IValueResolver<VaccinationRegistration, VaccinRegistrationDTO,string>
 {
+    private readonly IVaccinationService _service;
+
+    public VaccinLocationResolver(IVaccinationService service){
+        _service = service;
+    }
     public string Resolve(VaccinationRegistration source, VaccinRegistrationDTO destination,string dest, ResolutionContext context)
     {
-        List<VaccinationLocation> locations = context.Items["locations"] as List<VaccinationLocation>;
-        return locations.Where(l => l.VaccinationLocationId == source.VaccinationLocationId).Single().Name;
+        return _service.GetVaccinationLocations().Where(l => l.VaccinationLocationId == source.VaccinatinRegistrationId).First().Name;
+        //List<VaccinationLocation> locations = context.Items["locations"] as List<VaccinationLocation>;
+        //return locations.Where(l => l.VaccinationLocationId == source.VaccinationLocationId).Single().Name;
     }
 }
 

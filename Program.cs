@@ -37,11 +37,7 @@ app.MapGet("/registrations", (IMapper mapper, IVaccinationService vaccinationSer
 {
     try
     {
-        var mapped = mapper.Map<List<VaccinRegistrationDTO>>(vaccinationService.GetVaccinationRegistrations(),opts => 
-        {
-            opts.Items["locations"] = vaccinationService.GetVaccinationLocations(); 
-            opts.Items["vaccins"] = vaccinationService.GetVaccinationTypes();
-        });
+        var mapped = mapper.Map<List<VaccinRegistrationDTO>>(vaccinationService.GetVaccinationRegistrations());
         return Results.Ok(mapped);
     }
     catch (Exception ex){
