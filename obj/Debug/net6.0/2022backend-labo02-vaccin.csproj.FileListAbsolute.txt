@@ -22,3 +22,4 @@ D:\Backend Development\2022backend-labo02-vaccin\obj\Debug\net6.0\ref\2022backen
 D:\Backend Development\2022backend-labo02-vaccin\bin\Debug\net6.0\AutoMapper.dll
 D:\Backend Development\2022backend-labo02-vaccin\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Backend Development\2022backend-labo02-vaccin\obj\Debug\net6.0\2022backend-labo02-vaccin.csproj.CopyComplete
+D:\Backend Development\2022backend-labo02-vaccin\bin\Debug\net6.0\CsvHelper.dll

@@ -32,3 +32,25 @@ public class VaccinationLocationRepository : IVaccinationLocationRepository
         return _locations.ToList<VaccinationLocation>();
     }
 }
+
+public class CsvLocationRepository : IVaccinationLocationRepository
+{
+    private readonly CsvConfig _config;
+    public CsvLocationRepository(IOptions<CsvConfig> config)
+    {
+        _config = config.Value;
+    }
+    public List<VaccinationLocation> GetLocations()
+    {
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+        {
+            Delimiter = ";",
+        };
+        using (var reader = new StreamReader(_config.LocationPath))
+        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+        {
+            var records = csv.GetRecords<VaccinationLocation>();
+            return records.ToList();
+        }
+    }
+}

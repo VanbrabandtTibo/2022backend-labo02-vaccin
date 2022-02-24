@@ -1,5 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddTransient<IVaccinationLocationRepository, VaccinationLocationRepository>();
+var csvSettings = builder.Configuration.GetSection("CsvConfig");
+builder.Services.Configure<CsvConfig>(csvSettings);
+
+builder.Services.AddTransient<IVaccinationLocationRepository, CsvLocationRepository>();
 builder.Services.AddTransient<IVaccinationRegistrationRepository, VaccinationRegistrationRepository>();
 builder.Services.AddTransient<IVaccinationTypeRepository, VaccinationTypeRepository>();
 builder.Services.AddTransient<IVaccinationService, VaccinationService>();
@@ -43,7 +46,7 @@ app.MapGet("/registrations", (IMapper mapper, IVaccinationService vaccinationSer
         throw;
     }
 });
-
+    
 app.MapGet("/types", (IVaccinationService vaccinationService) => {
     return Results.Ok(vaccinationService.GetVaccinationTypes());
 });

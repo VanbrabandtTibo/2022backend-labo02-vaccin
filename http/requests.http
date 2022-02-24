@@ -7,3 +7,19 @@ GET http://localhost:3000/registrations HTTP/1.1
 ###
 
 GET http://localhost:3000/types HTTP/1.1
+
+###
+
+POST http://localhost:3000/registrations HTTP/1.1
+Content-Type: application/json
+
+{
+    "vaccinatinRegistrationId": "e5e07b37-3709-45bd-a5b6-d5b3270186b1",
+    "name" : "Trump",
+    "firstName" : "Donald",
+    "email" : "donald@maga.eu",
+    "yearOfBirth" : 1952,
+    "vaccinationDate": "1/1/2022",
+    "vaccinName": "BioNTech, Pfizer",
+    "location": "Gent Expo"
+}
